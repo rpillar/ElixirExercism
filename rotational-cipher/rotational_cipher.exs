@@ -15,28 +15,24 @@ defmodule RotationalCipher do
       |> List.to_string
   end
 
-  @spec transform(char :: integer, shift :: integer) :: integer
-  defp transform(char, shift) do
-    cond do
-      Enum.member?(lower(), char) ->
-        transform_char(lower(), char, shift)
+  def transform(char, shift) when char in ?a..?z do
+    transform_char(?a..?z, char, shift)
+  end
 
-      Enum.member?(upper(), char) ->
-        transform_char(upper(), char, shift)
-      
-      true ->
-        char
-    end
+  def transform(char, shift) when char in ?A..?Z do
+    transform_char(?A..?Z, char, shift)
+  end
+
+  def transform(char, _) do
+    char
   end
 
   defp transform_char(charset, char, shift) do
     if ( ( char + shift ) > Enum.max(charset) ) do
-      new_char = ( Enum.min(charset) + ( (char + shift) - Enum.max(charset) ) ) -1
+      ( Enum.min(charset) + ( (char + shift) - Enum.max(charset) ) ) -1
     else
-      new_char = char + shift
+      char + shift
     end
   end
 
-  defp lower(), do: ?a..?z
-  defp upper(), do: ?A..?Z
 end
