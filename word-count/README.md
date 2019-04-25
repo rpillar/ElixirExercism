@@ -1,5 +1,7 @@
 # Comments
 
+Update - made use of Regex.scan which made the whole process much simpler.
+
 Not the most elegant solution - but it does pass all the tests. Lots of fun with the multi-byte words and
 I also need to become more familiar with regexs. Maybe I'll add a section to my website.
 
